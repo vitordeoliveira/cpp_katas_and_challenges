@@ -32,26 +32,30 @@ public:
     std::vector<int> twoSum(std::vector<int> &nums, int target)
     {
         std::map<int, int> m;
-        target;
+        std::vector<int> copy = nums;
+        copy[0] = 10;
 
         int index = 0;
-        for (auto n : nums)
-        {
-            m[index++] = n;
-        }
-        sort(nums.begin(), nums.end());
-
         
-
-        return nums;
+        for (int i = index; i < nums.size(); i++)
+        {
+            for (int y = (i + 1); y < nums.size(); y++)
+            {
+                int sum = nums[i] + nums[y];
+                if (sum == target)
+                    return {i, y};
+            }
+        }
     }
 
     void printvec(std::vector<int> nums)
     {
         for (int n : nums)
         {
-            std::cout << n << "\n";
+            std::cout << n << " ";
         }
+
+        std::cout << "\n";
     }
 };
 
@@ -59,7 +63,6 @@ int main()
 {
     Solution s;
 
-    std::vector<int> v = {1, 2, 6, 4};
-    s.twoSum(v, 3);
-    s.printvec(v);
+    std::vector<int> v = {3, 2, 3};
+    s.printvec(s.twoSum(v, 6));
 }

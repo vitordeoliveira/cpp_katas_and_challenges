@@ -31,7 +31,26 @@ using namespace std;
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        
+        int max_diff = 0;
+        int diff = 0;
+        int index = 0;
+
+        for (int i = index; i < prices.size(); i++)
+        {
+            for (int y = (i + 1); y < prices.size(); y++)
+            {
+                if(prices[i] > prices[y]) {
+                    diff = prices[i] > prices[y];
+                    cout << diff;
+                }
+                if(diff > max_diff) {
+                    max_diff = diff;
+                    cout << max_diff;
+                }
+            }
+        }
+
+        return max_diff;
     }
 };
 
@@ -40,5 +59,7 @@ int main()
     Solution s;
 
     std::vector<int> v = {1, 2, 6, 4};
+
+    cout << s.maxProfit(v) << '\n';
 
 }
