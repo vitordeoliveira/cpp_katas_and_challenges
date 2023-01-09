@@ -7,8 +7,6 @@
 
 // Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
- 
-
 // Example 1:
 
 // Input: prices = [7,1,5,3,6,4]
@@ -21,36 +19,54 @@
 // Output: 0
 // Explanation: In this case, no transactions are done and the max profit = 0.
 
-
 #include <vector>
 #include <iostream>
+#include <limits.h>
 #include <map>
 
 using namespace std;
 
+// class Solution {
+// public:
+//     int maxProfit(vector<int>& prices) {
+
+//         int max_diff = 0;
+//         int diff = 0;
+//         int index = 0;
+
+//         for (int i = index; i < prices.size(); i++)
+//         {
+//             for (int y = (i + 1); y < prices.size(); y++)
+//             {
+//                 if(prices[i] < prices[y]) diff = prices[y] - prices[i];
+//                 if(diff > max_diff) max_diff = diff;
+//             }
+//         }
+
+//         return max_diff;
+//     }
+// };
+
+
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int max_diff = 0;
-        int diff = 0;
+
+        int profit = 0;
+        int profit_today = 0;
+        int min = INT_MAX;
         int index = 0;
 
         for (int i = index; i < prices.size(); i++)
         {
-            for (int y = (i + 1); y < prices.size(); y++)
-            {
-                if(prices[i] > prices[y]) {
-                    diff = prices[i] > prices[y];
-                    cout << diff;
-                }
-                if(diff > max_diff) {
-                    max_diff = diff;
-                    cout << max_diff;
-                }
-            }
+            if(prices[i] < min) min = prices[i];
+
+            profit_today = prices[i] - min;
+
+            if(profit_today > profit) profit = profit_today;
         }
 
-        return max_diff;
+        return profit;
     }
 };
 
@@ -61,5 +77,4 @@ int main()
     std::vector<int> v = {1, 2, 6, 4};
 
     cout << s.maxProfit(v) << '\n';
-
 }
