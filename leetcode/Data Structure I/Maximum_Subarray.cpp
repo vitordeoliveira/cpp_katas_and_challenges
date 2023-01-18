@@ -29,21 +29,34 @@
 
 class Solution {
 public:
-    int maxSubArray(std::vector<int>& nums) {
-        int mid = (nums.size()-1) / 2;
+    int maxSubArray(const std::vector<int>& nums, char c) {
+        int mid = nums.size() / 2;
         int max_sum_r = INT_MIN;
         int max_sum_l = INT_MIN;
         int max_sum = INT_MIN;
-
-        if( nums.size()==1 ) return nums[0];
-
-        std::vector<int> s(6,0);
-
-        // max_sum_r = maxSubArray(s);
-        // max_sum_l = maxSubArray(std::vector<int>(nums.begin(), nums.begin()+mid));
+        std::cout << "mid " << mid << '\n';
+        print(nums, c);
 
 
-        return 0;
+        if( nums.size() == 1 ) {
+            return nums[mid];
+        }   
+
+        max_sum_r = maxSubArray(std::vector<int>(nums.begin()+mid, nums.end()), 'R');
+        max_sum_l = maxSubArray(std::vector<int>(nums.begin(), nums.begin()+mid), 'L');
+
+        // std::cout << "max " << mid << '\n';
+
+        return max_sum_r;
+    }
+
+    void print(const std::vector<int>& nums, char c){
+        std::cout << c << ": ";
+
+        for(auto n:nums){
+            std::cout << n << ", ";
+        }
+        std::cout << "\n\n";
     }
 };
 
@@ -51,9 +64,9 @@ int main(){
 
     Solution s;
 
-    std::vector<int> v = {1, 2, 6, 4};
+    std::vector<int> v = {1, 2, 3};
 
-    s.maxSubArray(v);
+    s.maxSubArray(v, 'I');
 
     return 0;
 }
