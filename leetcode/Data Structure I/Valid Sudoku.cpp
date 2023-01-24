@@ -10,57 +10,72 @@ public:
     bool isValidSudoku(const vector<vector<char>>& board) {
         for(int line = 0; line < board.size(); line++){
             map<pair<int, char>, int> m;
+            map<pair<int, int>, int> mgroup;
             // vector<char> line = board[i];
             
 
-            // check line
-            for(int col = 0 ; col < 9; col++){
-                if(board[line][col] != '.') m[{board[line][col], 'l'}]++;
-                if(m[{board[line][col], 'l'}] > 1) {
-                    cout << "num: " << board[line][col] << ' ';
-                    return false;
-                }
+            // check line & col & group
+            // for(int col = 0 ; col < 9; col++){
+            //     if(board[line][col] != '.') m[{board[line][col], 'l'}]++;
+            //     if(m[{board[line][col], 'l'}] > 1) {
+            //         cout << "num: " << board[line][col] << ' ';
+            //         return false;
+            //     }
 
-                if(board[col][line] != '.') m[{board[col][line], 'c'}]++;
-                if(m[{board[col][line], 'c'}] > 1) {
-                    cout << "num: " << board[col][line] << ' ';
-                    return false;
-                }
-            }
+            //     if(board[col][line] != '.') m[{board[col][line], 'c'}]++;
+            //     if(m[{board[col][line], 'c'}] > 1) {
+            //         cout << "num: " << board[col][line] << ' ';
+            //         return false;
+            //     }
+            // }
 
 
             // check group 3x3
+            int limit = 3;
+            int cnt = 0;
+            int group = 0;
             for(int col = 0 ; col < 9; col++){
-                
-                // [0][0]
-                // [0][1]
-                // [0][2]
-                // [1][0]
-                // [1][1]
-                // [1][2]
-                // [2][0]
-                // [2][1]
-                // [2][2]
 
-                // [0][3]
-                // [0][4]
-                // [0][5]
-                // [1][3]
-                // [1][4]
-                // [1][5]
-                // [2][3]
-                // [2][4]
-                // [2][5]
+                if(line < 3 && col < 3){
+                    group = 1;
+                }
 
-                // [3][3]
-                // [3][4]
-                // [3][5]
-                // [4][3]
-                // [4][4]
-                // [4][5]
-                // [5][3]
-                // [5][4]
-                // [5][5]
+                else if(line < 3 && col < 6){
+                    group = 2;
+                }
+
+                else if(line < 3 && col < 9){
+                    group = 3;
+                }
+
+                else if(line < 6 && col < 3){
+                    group = 4;
+                }
+
+                else if(line < 6 && col < 6){
+                    group = 5;
+                }
+
+                else if(line < 6 && col < 9){
+                    group = 6;
+                }
+
+                else if(line < 9 && col < 3){
+                    group = 7;
+                }
+
+                else if(line < 9 && col < 6){
+                    group = 8;
+                }  
+
+                else if(line < 9 && col < 9){
+                    group = 9;
+                }
+
+            
+                m[{board[col][line], group}]++;
+
+                std::cout << group << "\n";
             }
 
         }
@@ -71,7 +86,6 @@ public:
 int main(){
     Solution s;
     s.isValidSudoku({ 
-        {'5','3','.','.','7','.','.','.','.'},
         {'6','.','1','1','9','5','.','.','.'}
         ,{'2','9','8','.','.','.','.','6','.'}
         ,{'8','.','.','.','6','.','.','.','3'}
