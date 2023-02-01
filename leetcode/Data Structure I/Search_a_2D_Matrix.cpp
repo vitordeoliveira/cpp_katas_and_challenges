@@ -29,37 +29,58 @@ using namespace std;
 class Solution
 {
 public:
-    bool searchMatrix(const vector<vector<int>> &matrix, int target)
+    // bool searchMatrix(const vector<vector<int>> &matrix, int target)
+    // {
+    //     int x = binarySearch(matrix, 0, 8, target);
+    //     if (x != -1)
+    //         return true;
+    //     return false;
+    // }
+
+    // int binarySearch(const vector<vector<int>> vec, int left, int right, int x)
+    // {
+
+    //     if (right >= left)
+    //     {
+    //         int mid = left + (right - left) / 2;
+
+    //         int value = vec[0][mid];
+
+    //         if (vec[0][mid] == x)
+    //             return mid;
+    //         if (vec[0][mid] > x)
+    //             return binarySearch(vec, left, mid - 1, x);
+    //         return binarySearch(vec, mid + 1, right, x);
+    //     }
+
+    //     return -1;
+    // }
+
+        bool searchMatrix(const vector<vector<int>> &matrix, int target)
     {
-        int midMatrix = matrix.size() / 2;
-        int mid = matrix[midMatrix].size() / 2;
-
-        while (midMatrix > 0 || midMatrix < matrix.size())
-        {
-            while (mid >= 0 && mid < matrix[midMatrix].size())
-            {
-                if (matrix[midMatrix][mid] == target)
-                {
-                    return true;
-                }
-                if (target > matrix[midMatrix][mid])
-                    mid++;
-                if (target < matrix[midMatrix][mid])
-                    mid--;
-            }
-
-            std::cout << "---------------------------- "<< mid << "\n";
-            if (mid < 0)
-            {
-                mid = matrix[--midMatrix].size() / 2;
-            }
-
-            if (mid > matrix[midMatrix][mid] )
-                mid = matrix[++midMatrix].size() / 2;
-        }
-        std::cout << "FALSE\n";
-
+        int x = binarySearch(matrix, 0, 8, target);
+        if (x != -1)
+            return true;
         return false;
+    }
+
+    int binarySearch(const vector<vector<int>> vec, int left, int right, int x)
+    {
+
+        if (right >= left)
+        {
+            int mid = left + (right - left) / 2;
+
+            int value = vec[0][mid];
+
+            if (vec[0][mid] == x)
+                return mid;
+            if (vec[0][mid] > x)
+                return binarySearch(vec, left, mid - 1, x);
+            return binarySearch(vec, mid + 1, right, x);
+        }
+
+        return -1;
     }
 };
 
@@ -67,5 +88,7 @@ int main()
 {
     Solution s;
 
-    s.searchMatrix({{1, 3, 5, 7}, {10, 11, 12, 13}, {23, 30, 3460}}, 30);
+    s.searchMatrix({{1, 3, 5}, {10, 11, 13}, {23, 30, 3460}}, 13);
+
+    // cout << s.binarySearch({1,3,4,5}, 0, 3, 0) << '\n';
 }

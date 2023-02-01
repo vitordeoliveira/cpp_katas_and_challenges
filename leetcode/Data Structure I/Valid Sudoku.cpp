@@ -128,10 +128,7 @@ public:
 
                 if (board[line][col] != '.')
                 {
-                    int group = (line / 3) * 3 + (col / 3);
-
-                    cout << "line "<< 1 << " col "<< 1 << " group "<< (1 / 3) * 3 + (1 / 3) << "\n";
-                    
+                    int group = (line / 3) * 3 + (col / 3);                    
                     mgroup[{board[line][col], group}]++;
 
                     if (mgroup[{board[line][col], group}] > 1)
