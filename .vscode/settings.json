@@ -90,6 +90,8 @@
         "thread": "cpp",
         "typeindex": "cpp",
         "valarray": "cpp",
-        "map": "cpp"
+        "__hash_table": "cpp",
+        "__node_handle": "cpp",
+        "queue": "cpp"
     }
 }
