@@ -34,40 +34,82 @@ struct ListNode
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+// class Solution
+// {
+// public:
+//     ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
+//     {
+//         if(!list1) return list2;
+//         if(!list2) return list1;
+
+//         if (list2->val < list1->val)
+//         {
+//             ListNode *tmp = list1;
+//             list1 = list2;
+//             list2 = tmp;
+//         }
+
+//         ListNode *head = list1;
+
+//         while (head && list2)
+//         {
+//             if(!head->next){
+//                 head->next = list2;
+//                 return list1;
+//             }
+//             if (head->next->val >= list2->val)
+//             {
+//                 ListNode *tmp = head->next;
+//                 ListNode *tmp2 = list2->next;
+//                 head->next = list2;
+//                 list2->next = tmp;
+//                 list2 = tmp2;
+//             }
+//             head = head->next;
+//         }
+
+//         return list1;
+//     };
+// };
+
 class Solution
 {
 public:
     ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
     {
-
-        if (!list2)
-            return list1;
+        ListNode *head = new ListNode();
+        ListNode *curr = head;
         if (!list1)
             return list2;
+        if (!list2)
+            return list1;
 
-
-        if(list2->val < list1->val){
-            ListNode *tmp = list1;
-            list1 = list2;
-            list2 = tmp;
-        }
-
-        ListNode *head = list1->next;
-
-        while (head)
+        while (list1 != NULL && list2 != NULL)
         {
-            if (head->val > list2->val)
+            if (list1->val <= list2->val)
             {
-                ListNode *tmp = head;
-                head = list2;
-                list2 = list2->next;
-                head->next = tmp;
+                curr->next = list1;
+                list1 = list1->next;
             }
-
-            head = head->next;
+            else
+            {
+                curr->next = list2;
+                list2 = list2->next;
+            }
+            curr = curr->next;
         }
 
-        return list1;
+// while(list1 != NULL && list2 != NULL){
+//              if(list1->val <= list2->val){
+//                  curr->next=list1;
+//                  list1 = list1 ->next;
+//              }else{
+//                  curr->next=list2;
+//                  list2 = list2 ->next;
+//              }
+//               curr = curr -> next;
+//          }
+        return head->next;
     };
 };
 
@@ -78,7 +120,7 @@ int main()
     // list1->next->next = new ListNode(4);
 
     ListNode *list2 = new ListNode(1);
-    list2->next = new ListNode(3);
+    list2->next = new ListNode(2);
     // list2->next->next = new ListNode(4);
 
     Solution s;
