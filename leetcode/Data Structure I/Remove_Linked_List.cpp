@@ -27,7 +27,6 @@ struct ListNode
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-// IDEA CREATE A NEW LIST
 
 class Solution
 {
