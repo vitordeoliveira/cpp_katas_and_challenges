@@ -27,26 +27,36 @@ struct ListNode
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+// IDEA CREATE A NEW LIST
+
 class Solution
 {
 public:
     ListNode *removeElements(ListNode *head, int val)
     {
 
-        ListNode *current = new ListNode();
-        ListNode *tail = head;
-        current->next = tail;
+        ListNode *newlist = new ListNode();
+        ListNode *newhead = newlist;
 
-        while (current)
+        while (head)
         {
-            current = current->next;
+            if (head->val != val)
+            {
+                ListNode *tmp = new ListNode();
+                tmp->val = head->val;
+                newlist->next = tmp;
+                newlist = newlist->next;
+            }
+            head = head->next;
         }
 
-        return head;
+        return newhead->next;
     }
 };
 
-
-int main(){
+int main()
+{
     Solution s;
+
+    // s.removeElements(a)
 }
