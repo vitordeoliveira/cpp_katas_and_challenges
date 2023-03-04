@@ -92,6 +92,7 @@
         "valarray": "cpp",
         "__hash_table": "cpp",
         "__node_handle": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "stack": "cpp"
     }
 }
