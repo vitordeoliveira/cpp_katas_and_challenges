@@ -36,7 +36,38 @@ using namespace std;
 
 class Solution {
 public:
+    int height(TreeNode* root){
+        if(!root) return 0;
+
+        int lefth = height(root->left);
+        int righth = height(root->right);
+
+        if(lefth > righth){
+            return lefth+1;
+        } else {
+            return righth+1;
+        }
+    }
+
+    void currentLevel(TreeNode* root, int curr, int level, vector<vector<int>> &res){
+        if(!root) return;
+        if(curr == 1){
+            res[level-1].push_back(root->val);
+            // res[level-1].push_back({root->val});
+        } else if(level > 1){
+            currentLevel(root->left, curr-1, level, res);
+            currentLevel(root->right, curr-1, level, res);
+        }
+    }
+
     vector<vector<int>> levelOrder(TreeNode* root) {
+        int h = height(root);
+        int i;
+        vector<vector<int>> res(h);
+        for (i = 1; i <= h; i++){
+            currentLevel(root, i, i, res);
+        }
         
+        return res;
     }
 };
