@@ -26,36 +26,56 @@
 #include <bits/stdc++.h>
 #include <map>
 
+// class Solution
+// {
+// public:
+//     std::vector<int> twoSum(std::vector<int> &nums, int target)
+//     {
+//         std::map<int, int> m;
+//         std::vector<int> copy = nums;
+//         copy[0] = 10;
+
+//         int index = 0;
+
+//         for (int i = index; i < nums.size(); i++)
+//         {
+//             for (int y = (i + 1); y < nums.size(); y++)
+//             {
+//                 int sum = nums[i] + nums[y];
+//                 if (sum == target)
+//                     return {i, y};
+//             }
+//         }
+//     }
+
+//     void printvec(std::vector<int> nums)
+//     {
+//         for (int n : nums)
+//         {
+//             std::cout << n << " ";
+//         }
+
+//         std::cout << "\n";
+//     }
+// };
+
 class Solution
 {
 public:
-    std::vector<int> twoSum(std::vector<int> &nums, int target)
+    vector<int> twoSum(vector<int> &nums, int target)
     {
-        std::map<int, int> m;
-        std::vector<int> copy = nums;
-        copy[0] = 10;
 
-        int index = 0;
-        
-        for (int i = index; i < nums.size(); i++)
+        for (int x = 0; x < nums.size(); x++)
         {
-            for (int y = (i + 1); y < nums.size(); y++)
+            for (int y = (x + 1); y < nums.size(); y++)
             {
-                int sum = nums[i] + nums[y];
+                int sum = nums[x] + nums[y];
                 if (sum == target)
-                    return {i, y};
+                    return {x, y};
             }
         }
-    }
 
-    void printvec(std::vector<int> nums)
-    {
-        for (int n : nums)
-        {
-            std::cout << n << " ";
-        }
-
-        std::cout << "\n";
+        return {0, 0};
     }
 };
 
